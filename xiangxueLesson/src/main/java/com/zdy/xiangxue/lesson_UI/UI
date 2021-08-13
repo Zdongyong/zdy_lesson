@@ -1,0 +1,85 @@
+
+
+ActivityThread.performLaunchActivity()
+    1：makeApplication()初始化application
+    2：Context appContext = createBaseContextForActivity(r, activity);创建上下文
+    3：Instrumentation mInstrumentation.newActivity 创建activity
+
+    4：window = r.mPendingRemoveWindow; 创建WINDOW
+        1：r.mPendingRemoveWindow = r.window;
+        2： r.window = r.activity.getWindow();  这时候的window还是空
+
+    5：activity.attach 建立activity与window的关联
+        1：Activity.java中   mWindow = new PhoneWindow(this, window, activityConfigCallback);
+
+    6：mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);
+
+继承步骤4：
+PhoneWindow
+    1：setContentView-->installDecor()
+            generateDecor(-1) 初始化DecorView
+            mContentParent = generateLayout(mDecor);  装载DecorView到ViewGroup
+                    mDecor.onResourcesLoaded(mLayoutInflater, layoutResource);  加载系统resource
+                        -->DecorView   inflater.inflate(layoutResource, null); 解析layoutResource布局文件
+                                        addView 加载到根布局  addView(root, 0, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
+    2：setContentView-->mLayoutInflater.inflate(layoutResID, mContentParent);根据layoutResID解析布局
+                        mLayoutInflater是LayoutInflater的实例
+                        -->LayoutInflater.inflate() 最终执行454行 inflate(XmlPullParser parser, @Nullable ViewGroup root, boolean attachToRoot)
+                            -->LayoutInflater.createViewFromTag(root, name, inflaterContext, attrs);创建view
+
+                            系统布局资源  在SkinThemeUtils.getResId()
+                                if (!ignoreThemeAttr) {
+                                            final TypedArray ta = context.obtainStyledAttributes(attrs, ATTRS_THEME);
+                                            final int themeResId = ta.getResourceId(0, 0);
+                                            if (themeResId != 0) {
+                                                context = new ContextThemeWrapper(context, themeResId);
+                                            }
+                                            ta.recycle();
+                                        }
+
+
+                            createView(name, null, attrs);创建view
+                            public final View createView(...)
+                            在这里使用反射调用2个参数的构造方法实例化view对象
+
+                            -->ViewGroup.generateLayoutParams(attrs);
+
+                            -->temp.setLayoutParams(params);
+                            root==null    构建的view将是一个独立的个体，属性无效
+                            root!=null  &&  attachToRoot==false
+                                                 1.属性值会依托于root构建，所以此时的xml根布局的属性有效
+                                                 2.根布局产生的view不是root的子布局
+                            root!=null  &&  attachToRoot==true
+                                                 1.属性值会依托于root构建，所以此时的xml根布局的属性有效
+                                                 2.根布局产生的view是root的子布局，通过addView实现
+
+
+
+
+
+
+作业1：看懂事件分发
+
+事件分发：
+从activity开始
+activity-->phoneWindow-->DecroView
+
+内部拦截+外部拦截
+
+一个ACTION_MOVE有几个手指  ？根据几个手指滑动就有几个  最多32
+
+
+滑动冲突两个角色：父+子  NestedScrollView
+
+手指滑动touch+惯性滑动non-touch
+
+惯性滑动--速度fling - 距离
+
+Scrollview嵌套viewpaper 需要设置android:fillViewport="true"
+
+
+
+
+
+
+

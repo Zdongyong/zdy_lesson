@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zdy.xiangxue">
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".lesson02_annotation.AnnotationActivity"></activity>
+        <activity android:name=".lesson03_proxy.ProxyActivity"></activity>
+        <activity android:name=".lesson_rxJava.RxJavaActivity"></activity>
+        <activity android:name=".lesson_UI.CustomViewActivity"></activity>
+        <activity android:name=".lesson_UI.FlexBoxViewActivity"></activity>
+        <activity android:name=".lesson_UI.SkinViewActivity"></activity>
+        <activity android:name=".lesson_UI.NestedActivity"></activity>
+        <activity android:name=".lesson_UI.NestedActivity01"></activity>
+        <activity android:name=".lesson_UI.NestedActivity02"></activity>
+        <activity android:name=".lesson_UI.NestedActivity03"></activity>
+        <activity android:name=".lesson_UI.FishActivity"></activity>
+        <activity android:name=".lesson_UI.MountingActivity"></activity>
+        <activity android:name=".lesson_UI.BarActivity"></activity>
+        <service android:name=".services.MyService"
+            android:process=":remote">
+
+        </service>
+    </application>
+
+</manifest>

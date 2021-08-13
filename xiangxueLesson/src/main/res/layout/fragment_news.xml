@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/junp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="反射代理"/>
+
+        <Button
+            android:id="@+id/junp_rx"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="RxJava"/>
+
+        <Button
+            android:id="@+id/junp_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="自定义View"/>
+
+        <Button
+            android:id="@+id/junp_skin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="换肤"/>
+
+        <Button
+            android:id="@+id/junp_nested"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="嵌套滑动"/>
+        <Button
+            android:id="@+id/junp_fish"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="游动的鱼"/>
+
+        <Button
+            android:id="@+id/jump_mounting"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="吸顶效果"/>
+
+        <Button
+            android:id="@+id/jump_toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="吸顶折叠"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
